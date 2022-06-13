@@ -4,15 +4,19 @@ export default class Ball {
   constructor(game) {
     this.game = game
 
+    this.aRect
+    this.bRect
+    this.brick = document.getElementById('brick')
+
     const gameArea = document.getElementById('gameArea')
 
     this.positionX = this.game.world.gameRect.left + 600
     this.positionY = this.game.world.gameRect.top + 200
-    this.speedX = 4
-    this.speedY = 4
+    this.speedX = 5
+    this.speedY = 5
     this.width = 20
     this.height = 20
-    this.color = 'orange'
+    this.color = 'wheat'
     this.element = document.createElement('div')
     this.element.style.left = this.positionX + 'px'
     this.element.style.top = this.positionY + 'px'
@@ -21,9 +25,13 @@ export default class Ball {
     this.element.style.backgroundColor = this.color
     this.element.style.position = 'absolute'
     this.element.style.borderRadius = '50px'
+    this.element.style.border = 'solid #555 2px'
 
     this.element.setAttribute('id', 'ball')
     gameArea.append(this.element)
+
+    let bricks = document.querySelectorAll('#brick')
+
   }
 
   showGameProperties() {}
@@ -62,8 +70,8 @@ export default class Ball {
       this.positionX < this.game.world.gameRect.left
     ) {
       this.speedX *= -1
-      this.changeBallColor(this.createRandomColor())
       this.game.scoreBoard.increaseScore(1)
+      // this.game.sound.playPong()
     }
 
     if (
@@ -71,11 +79,23 @@ export default class Ball {
       this.positionY < this.game.world.gameRect.top
     ) {
       this.speedY *= -1
-      this.changeBallColor(this.createRandomColor())
-          this.game.scoreBoard.increaseScore(1)
+      this.game.scoreBoard.increaseScore(1)
+      // this.game.sound.playPong()
+    }
+  }
+
+  detectBrickCollision(ball, brick) {
+    this.aRect = this.element.getBoundingClientRect()
+    this.bRect = this.brick.getBoundingClientRect()
+
+    let temp = this.aRect.top < this.brick.bottom
+
+    if (this.aRect.top < this.bRect.bottom) {
+      this.brick.remove()
     }
 
-
+    let bricks = document.querySelectorAll('#brick')
+    bricks.forEach((brick) => {})
   }
 
   update(deltaTime) {
@@ -85,6 +105,10 @@ export default class Ball {
 
     this.moveBall()
     this.detectCollision()
+
+    if (this.game.gameObjects.length > 0 && this.brick) {
+      this.detectBrickCollision(this, this.brick)
+    }
 
     if (this.element.style.backgroundColor == 'white') {
     }

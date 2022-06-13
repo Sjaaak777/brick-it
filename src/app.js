@@ -5,8 +5,6 @@ import ScoreBoard from './scoreBoard.js'
 import World from './world.js'
 import Ball from './ball.js'
 
-let counter = 0
-
 export default class Game {
   constructor() {
     this.start()
@@ -17,12 +15,10 @@ export default class Game {
     this.scoreBoard = new ScoreBoard(this)
     this.ball = new Ball(this)
     this.ball.changeBallColor()
-    console.log(this.ball)
   }
 
   update() {
     window.requestAnimationFrame(game.update)
-    console.log('tikkerrr', game.scoreBoard.score)
   }
 }
 
