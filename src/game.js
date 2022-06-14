@@ -18,7 +18,7 @@ export default class Game {
     this.menu = new Menu(this)
     this.world = new World(this)
     this.scoreBoard = new ScoreBoard(this)
-    this.gameObjects.push(new Paddle(this))
+    // this.gameObjects.push(new Paddle(this))
     this.inputController = new InputController(this)
 
     this.pong = new Audio('sounds/pong.mp3')
@@ -31,11 +31,13 @@ export default class Game {
     this.brick = new Brick(this, 470, 30, 'images/brick-aqua.png')
 
     this.ball = new Ball(this)
+    // this.paddle = new Paddle(this)
 
     this.ball.removeAllBalls()
 
     this.scoreBoard.resetScore()
     this.gameObjects.length = 0
+    this.spawnPaddle()
   }
 
   resetGame() {
@@ -59,7 +61,8 @@ export default class Game {
   }
 
   spawnPaddle() {
-    this.gameObjects.push(new Paddle(this))
+    this.paddle = new Paddle(this)
+    this.gameObjects.push(this.paddle)
   }
 
   update(deltaTime) {

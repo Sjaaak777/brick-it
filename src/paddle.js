@@ -1,5 +1,5 @@
 'use strict'
-let speed = 5
+let speed = 1
 
 export default class Paddle {
   constructor(game) {
@@ -7,7 +7,7 @@ export default class Paddle {
 
     const gameArea = document.getElementById('gameArea')
 
-    this.positionX = this.game.world.gameRect.left + 350
+    this.positionX = this.game.world.gameRect.left + 1050
     this.positionY = this.game.world.gameRect.bottom - 40
 
     this.speedX = 2
@@ -35,11 +35,23 @@ export default class Paddle {
 
   resizePaddle(width) {}
 
-  movePaddle() {}
+  movePaddle() {
+
+  }
 
   update(deltaTime) {
     if (!deltaTime) {
       return
     }
+    let paddleCurrent = this.element.offsetLeft
+    paddleCurrent -= speed
+    this.game.paddle.element.style.left = paddleCurrent + 'px'
+
+    if(this.game.paddle.element.style.left <= gameArea.getBoundingClientRect().left){
+      paddleCurrent = 0
+    }
+    // console.log('padlles:',paddleCurrent, this.game.paddle)
+    console.dir (gameArea.getBoundingClientRect())
+    // console.log(paddleCurrent)
   }
 }

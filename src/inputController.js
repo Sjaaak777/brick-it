@@ -6,7 +6,8 @@ export default class InputController {
 			switch (event.keyCode) {
 				//DOWN: LEFT ARROW
 				case 37:
-					console.log('paddle moves left')
+					console.log(this.game, 'paddle moves left')
+					this.game.paddle.style.left = 999+'px'
 					break;
 				//DOWN: ARROW UP
 				case 38:
@@ -14,6 +15,7 @@ export default class InputController {
 				//DOWN: RIGHT ARROW
 				case 39:
 					console.log('paddle moves right')
+					this.game.paddle.style.left = 99+'px'
 					break;
 				//DOWN: ARROW DOWN
 				case 40:
