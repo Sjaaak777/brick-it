@@ -1,5 +1,5 @@
 'use strict'
-let speed = 1
+let speed = 9
 
 export default class Paddle {
   constructor(game) {
@@ -47,11 +47,13 @@ export default class Paddle {
     paddleCurrent -= speed
     this.game.paddle.element.style.left = paddleCurrent + 'px'
 
-    if(this.game.paddle.element.style.left <= gameArea.getBoundingClientRect().left){
-      paddleCurrent = 0
+    if(this.game.paddle.element.getBoundingClientRect().left <= gameArea.getBoundingClientRect().left){
+      console.log('Stop')
+      speed = 0
     }
     // console.log('padlles:',paddleCurrent, this.game.paddle)
-    console.dir (gameArea.getBoundingClientRect())
+    // console.dir (gameArea.getBoundingClientRect())
+    console.log(gameArea.getBoundingClientRect().left, this.game.paddle.element.getBoundingClientRect().left)
     // console.log(paddleCurrent)
   }
 }
