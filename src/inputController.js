@@ -5,23 +5,26 @@ export default class InputController {
     this.game = game
     document.addEventListener('keydown', (event) => {
       switch (event.keyCode) {
-        //DOWN: LEFT ARROW
+        // DOWN: LEFT ARROW
         case 37:
+        // DOWN: A
+        case 65:
           this.game.paddle.left = true
           break
-        //DOWN: ARROW UP
+        // DOWN: ARROW UP
         case 38:
           break
-        //DOWN: RIGHT ARROW
+        // DOWN: RIGHT ARROW
         case 39:
+        // DOWN D
+        case 68:
           this.game.paddle.right = true
           break
         //DOWN: ARROW DOWN
         case 40:
           break
-        //DOWN: SPACE
+        // DOWN: SPACE
         case 32:
-          //DOWN SPACE
           break
         case 13:
           game.sound = null
@@ -33,12 +36,16 @@ export default class InputController {
 
     document.addEventListener('keyup', (event) => {
       switch (event.keyCode) {
-        //UP: LEFT ARROW
+        // UP: LEFT ARROW
         case 37:
+        // UP: A
+        case 65:
           this.game.paddle.left = false
           break
-        //UP: RIGHT ARROW
+        // UP: RIGHT ARROW
         case 39:
+        // UP: D
+        case 68:
           this.game.paddle.right = false
           break
       }

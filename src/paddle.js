@@ -1,6 +1,4 @@
 'use strict'
-// let speed = 4
-// let move = true
 
 export default class Paddle {
   constructor(game) {
@@ -12,7 +10,7 @@ export default class Paddle {
 
     const gameArea = document.getElementById('gameArea')
 
-    this.positionX = this.game.world.gameRect.left + 1050
+    this.positionX = this.game.world.gameRect.left + 550
     this.positionY = this.game.world.gameRect.bottom - 40
 
     this.speedX = 2
@@ -38,12 +36,12 @@ export default class Paddle {
     console.log('the paddle moves')
   }
 
-  resetPaddlePosition(){
-    this.game.paddle.element.style.left = 350 +'px'
+  resetPaddlePosition() {
+    this.game.paddle.element.style.left = 850 + 'px'
   }
 
   resizePaddle(width) {}
-  removePaddle(){
+  removePaddle() {
     let paddle = document.querySelector('#paddle')
     paddle.remove()
   }
@@ -52,7 +50,7 @@ export default class Paddle {
     let paddleCurrent = this.element.offsetLeft
     if (
       this.left &&
-      this.element.offsetLeft > gameArea.getBoundingClientRect().left
+      this.element.offsetLeft > gameArea.getBoundingClientRect().left +5
     ) {
       paddleCurrent -= this.speed
 
@@ -62,7 +60,7 @@ export default class Paddle {
     if (
       this.right &&
       this.element.offsetLeft + this.width <
-        gameArea.getBoundingClientRect().right
+        gameArea.getBoundingClientRect().right -10
     ) {
       paddleCurrent += this.speed
       this.game.paddle.element.style.left = paddleCurrent + 'px'
@@ -75,10 +73,5 @@ export default class Paddle {
     }
 
     this.movePaddle()
-
-    console.log(
-      gameArea.getBoundingClientRect().left,
-      this.game.paddle.element.getBoundingClientRect().left
-    )
   }
 }
