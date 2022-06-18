@@ -3,6 +3,58 @@ export default class PhysicsEngine {
     this.game = game
   }
 
+  brickCollisionDetection(object, otherObject) {
+
+
+    let topOfObject = object.top
+    let rightOfObject = object.right
+    let bottomOfObject = object.bottom
+    let leftOfObject = object.left
+    let ball = object
+
+    let topOfOtherObject
+    let rightOfOtherObject
+    let leftOfOtherObject
+    let bottomOfOtherObject
+
+    let brick
+
+    otherObject.forEach(function (otherArrayObject) {
+// console.log(this.game)
+
+      topOfOtherObject = otherArrayObject.element.getBoundingClientRect().top
+      rightOfOtherObject =
+        otherArrayObject.element.getBoundingClientRect().right
+      leftOfOtherObject = otherArrayObject.element.getBoundingClientRect().left
+      bottomOfOtherObject =
+        otherArrayObject.element.getBoundingClientRect().bottom
+
+      brick = otherArrayObject
+      //   console.log('peng',bottomOfObject, otherArrayObject.element.getBoundingClientRect().bottom)
+      // console.log(otherArrayObject)
+
+      if (
+        // object.top <= bottomOfOtherObject
+
+        object.top <= bottomOfOtherObject &&
+        object.right >= leftOfOtherObject &&
+        object.left <= rightOfOtherObject &&
+        object.bottom >= topOfOtherObject
+      ) {
+        console.log(brick.element, 'bricked')
+        // console.log(this.game.ball)
+
+          brick.element.remove()
+// let auw = true
+          console.log(ball,'bounce dan?')
+        return true
+        // object.markedForDeletion = true
+        // otherArrayObject.markedForDeletion = true
+        // return true
+      }
+    })
+  }
+
   collisionDetection(object, otherObject) {
     let topOfObject = object.top
     let rightOfObject = object.right
@@ -14,48 +66,53 @@ export default class PhysicsEngine {
     let leftOfOtherObject = otherObject.left
     let bottomOfOtherObject = otherObject.bottom
 
+    //     otherObject.forEach(function (otherArrayObject) {
+    //       let topOfOtherObject = otherArrayObject.position.y
+    //       let rightOfOtherObject =
+    //         otherArrayObject.position.x + otherArrayObject.width
+    //       let leftOfOtherObject = otherArrayObject.position.x
+    //       let bottomOfOtherObject =
+    //         otherArrayObject.position.y + otherArrayObject.height
 
     if (
-        topOfObject <= bottomOfOtherObject &&
-        rightOfObject >= leftOfOtherObject &&
-        leftOfObject <= rightOfOtherObject &&
-        bottomOfObject >= topOfOtherObject
-      ) {
-
-        console.log('boem')
-        return true
-        // object.markedForDeletion = true
-        // otherArrayObject.markedForDeletion = true
-        // return true
-      }
+      topOfObject <= bottomOfOtherObject &&
+      rightOfObject >= leftOfOtherObject &&
+      leftOfObject <= rightOfOtherObject &&
+      bottomOfObject >= topOfOtherObject
+    ) {
+      console.log('boem')
+      return true
+      // object.markedForDeletion = true
+      // otherArrayObject.markedForDeletion = true
+      // return true
+    }
   }
 
+  //   detectCollision(object, otherObject) {
+  //     let topOfObject = object.position.y
+  //     let rightOfObject = object.position.x
+  //     let bottomOfObject = object.position.y + object.height
+  //     let leftOfObject = object.position.x + object.width
 
-//   detectCollision(object, otherObject) {
-//     let topOfObject = object.position.y
-//     let rightOfObject = object.position.x
-//     let bottomOfObject = object.position.y + object.height
-//     let leftOfObject = object.position.x + object.width
+  //     otherObject.forEach(function (otherArrayObject) {
+  //       let topOfOtherObject = otherArrayObject.position.y
+  //       let rightOfOtherObject =
+  //         otherArrayObject.position.x + otherArrayObject.width
+  //       let leftOfOtherObject = otherArrayObject.position.x
+  //       let bottomOfOtherObject =
+  //         otherArrayObject.position.y + otherArrayObject.height
 
-//     otherObject.forEach(function (otherArrayObject) {
-//       let topOfOtherObject = otherArrayObject.position.y
-//       let rightOfOtherObject =
-//         otherArrayObject.position.x + otherArrayObject.width
-//       let leftOfOtherObject = otherArrayObject.position.x
-//       let bottomOfOtherObject =
-//         otherArrayObject.position.y + otherArrayObject.height
-
-//       if (
-//         topOfObject <= bottomOfOtherObject &&
-//         rightOfObject >= leftOfOtherObject &&
-//         leftOfObject <= rightOfOtherObject &&
-//         bottomOfObject >= topOfOtherObject
-//       ) {
-//         object.markedForDeletion = true
-//         otherArrayObject.markedForDeletion = true
-//         return true
-//       }
-//     })
-//     return false
-//   }
+  //       if (
+  //         topOfObject <= bottomOfOtherObject &&
+  //         rightOfObject >= leftOfOtherObject &&
+  //         leftOfObject <= rightOfOtherObject &&
+  //         bottomOfObject >= topOfOtherObject
+  //       ) {
+  //         object.markedForDeletion = true
+  //         otherArrayObject.markedForDeletion = true
+  //         return true
+  //       }
+  //     })
+  //     return false
+  //   }
 }
