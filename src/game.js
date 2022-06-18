@@ -1,5 +1,5 @@
 'use strict'
-
+import PhysicsEngine from './controllerPhysics.js'
 import Menu from './menu.js'
 import World from './world.js'
 import ScoreBoard from './scoreBoard.js'
@@ -13,6 +13,7 @@ export default class Game {
   constructor() {}
 
   init() {
+    this.physicsEngine = new PhysicsEngine(this)
     this.gameObjects = []
     this.bricks = []
     this.paddles = []
@@ -32,7 +33,7 @@ export default class Game {
 
   resetGame() {
     this.ball.removeAllBalls()
-    this.bricks = []
+    // this.bricks = []
     this.scoreBoard.resetScore()
     this.gameObjects.length = 0
     this.gameObjects.push(new Ball(this))

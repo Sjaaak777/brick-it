@@ -11,7 +11,7 @@ export default class Paddle {
     const gameArea = document.getElementById('gameArea')
 
     this.positionX = this.game.world.gameRect.left + 550
-    this.positionY = this.game.world.gameRect.bottom - 40
+    this.positionY = this.game.world.gameRect.bottom - 90
 
     this.speedX = 2
 
@@ -67,11 +67,16 @@ export default class Paddle {
     }
   }
 
+  // detectCollision(){
+  //   if (this.game.ball.bottom)
+  // }
+
   update(deltaTime) {
     if (!deltaTime) {
       return
     }
 
     this.movePaddle()
+    // console.log(this.game.ball.element.getBoundingClientRect())
   }
 }

@@ -4,6 +4,7 @@ export default class Ball {
   constructor(game) {
     this.game = game
 
+    // this.paddleRectangle = this.game.paddle.element.getBoundingClientRect()
     this.aRect
     this.bRect
     this.brick = document.getElementById('brick')
@@ -18,6 +19,8 @@ export default class Ball {
     this.height = 20
     this.color = 'wheat'
     this.element = document.createElement('div')
+
+    this.ballRectangle = this.element.getBoundingClientRect()
     this.element.style.left = this.positionX + 'px'
     this.element.style.top = this.positionY + 'px'
     this.element.style.width = this.width
@@ -32,6 +35,7 @@ export default class Ball {
 
     let bricks = document.querySelectorAll('#brick')
 
+    // this.paddleRectangle = this.game.paddle.element.getBoundingClientRect()
   }
 
   showGameProperties() {}
@@ -64,13 +68,13 @@ export default class Ball {
     this.element.style.top = `${this.positionY}px`
   }
 
-  detectCollision() {
+  detectWorldCollision() {
     if (
       this.positionX + this.width > this.game.world.gameRect.right ||
       this.positionX < this.game.world.gameRect.left
     ) {
       this.speedX *= -1
-      this.game.scoreBoard.increaseScore(1)
+      // this.game.scoreBoard.increaseScore(1)
       // this.game.sound.playPong()
     }
 
@@ -79,23 +83,37 @@ export default class Ball {
       this.positionY < this.game.world.gameRect.top
     ) {
       this.speedY *= -1
-      this.game.scoreBoard.increaseScore(1)
+      this.game.scoreBoard.increaseScore(-1)
       // this.game.sound.playPong()
     }
   }
 
-  detectBrickCollision(ball, brick) {
-    this.aRect = this.element.getBoundingClientRect()
-    this.bRect = this.brick.getBoundingClientRect()
+  detectBrickCollision() {
 
-    let temp = this.aRect.top < this.brick.bottom
 
-    if (this.aRect.top < this.bRect.bottom) {
+
+
+    if (
+      this.game.physicsEngine.collisionDetection(
+        this.element.getBoundingClientRect(),
+        this.brick.getBoundingClientRect()
+      )
+    ) {
+      this.speedY *= -1
       this.brick.remove()
     }
 
-    let bricks = document.querySelectorAll('#brick')
-    bricks.forEach((brick) => {})
+  }
+
+  detectPaddleCollision() {
+    if (
+      this.game.physicsEngine.collisionDetection(
+        this.element.getBoundingClientRect(),
+        this.game.paddle.element.getBoundingClientRect()
+      )
+    ) {
+      this.speedY *= -1
+    }
   }
 
   update(deltaTime) {
@@ -103,8 +121,11 @@ export default class Ball {
       return
     }
 
+    this.detectPaddleCollision()
+    this.detectBrickCollision()
+
     this.moveBall()
-    this.detectCollision()
+    this.detectWorldCollision()
 
     if (this.game.gameObjects.length > 0 && this.brick) {
       this.detectBrickCollision(this, this.brick)
