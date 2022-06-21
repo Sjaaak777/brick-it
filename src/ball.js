@@ -1,5 +1,7 @@
 'use strict'
 
+// let collide = false
+
 export default class Ball {
   constructor(game) {
     this.game = game
@@ -31,6 +33,7 @@ export default class Ball {
     this.element.style.border = 'solid #555 2px'
 
     this.element.setAttribute('id', 'ball')
+
     gameArea.append(this.element)
 
     let bricks = document.querySelectorAll('#brick')
@@ -89,28 +92,7 @@ export default class Ball {
   }
 
   detectBrickCollision() {
-
-
-    
-    if(
-      this.game.physicsEngine.brickCollisionDetection(
-        this.element.getBoundingClientRect(), this.game.bricks)){
-
-      this.speedY *=-1
-      console.log('paats',this.game.physicsEngine.brickCollisionDetection(this.element.getBoundingClientRect(), this.game.bricks))
-
-    }
-    // if (
-    //   this.game.physicsEngine.collisionDetection(
-    //     this.element.getBoundingClientRect(),
-    //     this.bricks.forEach(function(brick){
-    //       brick.getBoundingClientRect()
-    //     })
-    //   )
-    // ) {
-    //   this.speedY *= -1
-    //   this.brick.remove()
-    // }
+    this.game.physicsEngine.brickCollisionDetection(this.game,  this, this.game.bricks)
   }
 
   detectPaddleCollision() {
@@ -129,24 +111,11 @@ export default class Ball {
       return
     }
 
-    // console.log(this.game.bricks)
-
-// this.game.bricks.forEach(brick => {
-//   console.log( brick.element.getBoundingClientRect().left)
-
-  
-// });
-
-
     this.detectPaddleCollision()
     this.detectBrickCollision()
 
     this.moveBall()
     this.detectWorldCollision()
-
-    // if (this.game.bricks.length > 0) {
-    //   this.detectBrickCollision(this, this.bricks)
-    // }
 
     if (this.element.style.backgroundColor == 'white') {
     }
