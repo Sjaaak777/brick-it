@@ -43,9 +43,9 @@ export default class Game {
 
   spawnBricks() {
     this.bricks.push(new Brick(this, 200, 30, 'images/brick-green.png'))
-    this.bricks.push(new Brick(this, 290, 30, 'images/brick-purple.png'))
-    this.bricks.push(new Brick(this, 380, 30, 'images/brick-blue.png'))
-    this.bricks.push(new Brick(this, 470, 30, 'images/brick-aqua.png'))
+    this.bricks.push(new Brick(this, 290, 60, 'images/brick-purple.png'))
+    this.bricks.push(new Brick(this, 380, 90, 'images/brick-blue.png'))
+    this.bricks.push(new Brick(this, 470, 120, 'images/brick-aqua.png'))
   }
 
   spawnBall() {

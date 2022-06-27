@@ -40,7 +40,9 @@ export default class Paddle {
     this.game.paddle.element.style.left = 850 + 'px'
   }
 
-  resizePaddle(width) {}
+  resizePaddle(width) {
+    this.width = width
+  }
   removePaddle() {
     let paddle = document.querySelector('#paddle')
     paddle.remove()

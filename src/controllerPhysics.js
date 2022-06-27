@@ -17,7 +17,7 @@ export default class PhysicsEngine {
 
     let brick
 
-    console.log('van physics:', game.ball.speedY)
+    // console.log('van physics:', game.ball.speedY)
 
     otherObject.forEach(function (otherArrayObject) {
       topOfOtherObject = otherArrayObject.element.getBoundingClientRect().top
@@ -38,6 +38,13 @@ export default class PhysicsEngine {
         object.element.style.backgroundColor = 'yellow'
         // object.element.style.width = 50 + 'px'
         object.element.style.left
+console.log(brick.color)
+
+
+if(brick.color == 'images/brick-aqua.png'){
+  console.log ('aqua brick removal')
+  game.scoreBoard.increaseScore(1000)
+}
 
         brick.element.remove()
         object.speedY *= -1
@@ -66,7 +73,7 @@ export default class PhysicsEngine {
       leftOfObject <= rightOfOtherObject &&
       bottomOfObject >= topOfOtherObject
     ) {
-      console.log('boem')
+      // console.log('boem')
       return true
     }
   }
