@@ -15,7 +15,7 @@ export default class Paddle {
 
     this.speedX = 2
 
-    this.width = 100
+    this.width = 150
     this.height = 20
     this.color = '#58afea'
     this.element = document.createElement('div')

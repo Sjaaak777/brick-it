@@ -9,6 +9,8 @@ import Paddle from './paddle.js'
 import Sound from './sound.js'
 import InputController from './inputController.js'
 
+const numberOfBricks = 12
+
 export default class Game {
   constructor() {}
 
@@ -33,7 +35,6 @@ export default class Game {
 
   resetGame() {
     this.ball.removeAllBalls()
-    // this.bricks = []
     this.scoreBoard.resetScore()
     this.gameObjects.length = 0
     this.gameObjects.push(new Ball(this))
@@ -42,10 +43,34 @@ export default class Game {
   }
 
   spawnBricks() {
-    this.bricks.push(new Brick(this, 200, 30, 'images/brick-green.png'))
-    this.bricks.push(new Brick(this, 290, 60, 'images/brick-purple.png'))
-    this.bricks.push(new Brick(this, 380, 90, 'images/brick-blue.png'))
-    this.bricks.push(new Brick(this, 470, 120, 'images/brick-aqua.png'))
+    for (let bricks = 1; bricks < numberOfBricks; bricks++) {
+      this.bricks.push(
+        new Brick(this, (190 * bricks) / 2, 60, 'images/brick-green.png')
+      )
+
+      this.bricks.push(
+        new Brick(this, (190 * bricks) / 2, 100, 'images/brick-purple.png')
+      )
+      this.bricks.push(
+        new Brick(this, (190 * bricks) / 2, 140, 'images/brick-aqua.png')
+      )
+      this.bricks.push(
+        new Brick(this, (190 * bricks) / 2, 180, 'images/brick-blue.png')
+      )
+      this.bricks.push(
+        new Brick(this, (190 * bricks) / 2, 220, 'images/brick-green.png')
+      )
+      this.bricks.push(
+        new Brick(this, (190 * bricks) / 2, 260, 'images/brick-purple.png')
+      )
+      this.bricks.push(
+        new Brick(this, (190 * bricks) / 2, 300, 'images/brick-aqua.png')
+      )
+      this.bricks.push(
+        new Brick(this, (190 * bricks) / 2, 340, 'images/brick-blue.png')
+      )
+      // console.log(bricks)
+    }
   }
 
   spawnBall() {

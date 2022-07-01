@@ -8,9 +8,9 @@ export default class Ball {
     this.brick = document.getElementById('brick')
     const gameArea = document.getElementById('gameArea')
     this.positionX = this.game.world.gameRect.left + 600
-    this.positionY = this.game.world.gameRect.top + 200
+    this.positionY = this.game.world.gameRect.top + 550
     this.speedX = 5
-    this.speedY = 5
+    this.speedY = -5
     this.width = 20
     this.height = 20
     this.color = 'wheat'
@@ -77,7 +77,7 @@ export default class Ball {
       this.positionY < this.game.world.gameRect.top
     ) {
       this.speedY *= -1
-      this.game.scoreBoard.increaseScore(-1)
+      // this.game.scoreBoard.increaseScore(-1)
       // this.game.sound.playPong()
     }
   }
@@ -88,6 +88,7 @@ export default class Ball {
       this,
       this.game.bricks
     )
+   
   }
 
   detectPaddleCollision() {
@@ -101,7 +102,7 @@ export default class Ball {
         (this.element.getBoundingClientRect().left -
           this.game.paddle.element.offsetLeft -
           this.game.paddle.element.getBoundingClientRect().width / 2) /
-        10
+        10 
 
       this.speedX = paddleCenter
       this.speedY *= -1
