@@ -12,7 +12,7 @@ const createWindow = () => {
       contextIsolation: false,
     },
   })
-  win.webContents.openDevTools()
+  // win.webContents.openDevTools()
   win.menuBarVisible = false
   win.loadFile('./src/index.html')
 }
